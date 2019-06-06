@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { alertReducer } from './alertReducer';
+import { alert } from './alertReducer';
 //import all reducers here
 
 const rootReducer = combineReducers({
 //add all new reducers here
-    alertReducer,
+    alert,
 })
 
 export default rootReducer;
