@@ -1,18 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Landing extends Component {
-    
-
-    render() {
-        return (
-            <div className="content">
-                
-            </div>
-        )
-    }
+  render() {
+    return <div className="content">Doggo</div>;
+  }
 }
 
 export default Landing;
-
 
 /// site intro and buttons leading to users landing and admin/shelter landing for sign in/sign up
