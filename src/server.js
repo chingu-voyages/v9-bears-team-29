@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose", () => console.log("moongose connected"));
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 console.log("db", process.env.DB_URI);
 mongoose.connect(process.env.DB_URI, () => console.log("mongose connected"));
 
