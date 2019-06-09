@@ -4,6 +4,10 @@ import { history } from "../helpers/history";
 import { alertActions } from "../actions/alertActions";
 import { Router, Switch, Route } from "react-router-dom";
 import Landing from "./Landing";
+import SignIn from './standardUsers/partials/SignIn';
+import Register from './standardUsers/partials/Register';
+import UserLanding from './standardUsers/UserLanding';
+import Browse from './standardUsers/Browse';
 
 class ConnectedApp extends Component {
   constructor(props) {
@@ -26,6 +30,10 @@ class ConnectedApp extends Component {
             <main className="content">
               <Switch>
                 <Route exact path="/" component={Landing} />
+                <Route exact path="/user/sign_in" component={SignIn} />
+                <Route exact path="/user/register" component={Register} />
+                <Route exact path="/user/index" component={UserLanding} /> 
+                <Route exact path="/user/browse" component={Browse} />
               </Switch>
             </main>
           </div>
