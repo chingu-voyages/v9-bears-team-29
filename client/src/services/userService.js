@@ -1,7 +1,7 @@
 export const userService = {
     register,
     signOut,
-    signIn
+    login
 }
 
 async function register(user) {
@@ -11,19 +11,19 @@ async function register(user) {
         body: JSON.stringify({ user: user })
     };
 
-    const response = await fetch(`/register`, requestOptions);
+    const response = await fetch(`/user/register`, requestOptions);
     const res = handleResponse(response);
     return res;
 };
 
-async function signIn(user) {
+async function login(user) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ params: user })
     };
 
-    const response = await(`/sign_in`, requestOptions);
+    const response = await fetch(`/user/sign_in`, requestOptions);
     const res = handleResponse(response);
     localStorage.setItem('user', JSON.stringify(res));
     return res;

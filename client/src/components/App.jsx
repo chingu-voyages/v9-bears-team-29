@@ -8,6 +8,9 @@ import SignIn from './standardUsers/partials/SignIn';
 import Register from './standardUsers/partials/Register';
 import UserLanding from './standardUsers/UserLanding';
 import Browse from './standardUsers/Browse';
+import Profile from './standardUsers/Profile';
+import Favorites from './standardUsers/Favorites';
+import { MDBAlert } from 'mdbreact';
 
 class ConnectedApp extends Component {
   constructor(props) {
@@ -20,11 +23,11 @@ class ConnectedApp extends Component {
   }
 
   render() {
+    const { message, type } = this.props;
     return (
       <div>
-        {alert.message && (
-          <div className={`alert ${alert.type}`}>{alert.message}</div>
-        )}
+        {message && type === "alert-danger" ? <MDBAlert color="danger">{message}</MDBAlert> : <p></p>}
+        {message && type === "alert-success" ? <MDBAlert color="success">{message}</MDBAlert> : <p></p>}
         <Router history={history}>
           <div className="App">
             <main className="content">
@@ -34,6 +37,8 @@ class ConnectedApp extends Component {
                 <Route exact path="/user/register" component={Register} />
                 <Route exact path="/user/index" component={UserLanding} /> 
                 <Route exact path="/user/browse" component={Browse} />
+                <Route exact path="/user/:id/profile" component={Profile} />
+                <Route exact path="/user/:id/favorites" component={Favorites} />
               </Switch>
             </main>
           </div>
@@ -44,9 +49,10 @@ class ConnectedApp extends Component {
 }
 
 function mapStateToProps(state) {
-  const { alert } = state;
+  const { message, type } = state.alert;
   return {
-    alert
+    message,
+    type
   };
 }
 

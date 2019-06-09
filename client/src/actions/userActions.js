@@ -5,7 +5,7 @@ import { history } from '../helpers/history';
 import { userService } from '../services/userService';
 
 export const userActions = {
-    signIn,
+    login,
     register,
     signOut
 }
@@ -28,11 +28,11 @@ function register(user) {
     function failure(error) { return { type: userConstants.ADD_USER_FAILURE, error }};
 };
 
-function signIn(user) {
+function login(user) {
     return dispatch => {
         dispatch(request(user));
 
-        userService.signIn(user).then((user) => {
+        userService.login(user).then((user) => {
             dispatch(success(user));
             history.push('/user/browse');
         }, error => {

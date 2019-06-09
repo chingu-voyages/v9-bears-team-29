@@ -11,7 +11,7 @@ module.exports = {
 
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: false }));
-        mongoose.connect(process.env.DB_URI, () => console.log("mongose connected"));
+        mongoose.connect(process.env.DB_URI, () => console.log("mongose connected"), { useNewUrlParser: true });
 
         app.use(cors());
         app.use(express.static(path.resolve(__dirname, 'client', 'public', 'index.html')));
