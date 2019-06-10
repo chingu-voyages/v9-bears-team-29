@@ -52,7 +52,7 @@ class ConnectedSignIn extends Component {
         const { user, submitted } = this.state;
         this.setState({ submitted: true });
         if (submitted && user.email && user.password){
-            dispatch(userActions.signIn(user))
+            dispatch(userActions.login(user))
         }
     }
 

@@ -25,26 +25,5 @@ const UserSchema = new Schema(
     }
 )
 
-UserSchema.pre('save', function(next) {
-    var user = this;
-
-    if(!user.isModified('password')) return next();
-
-    var salt = bcrypt.genSaltSync();
-    bcrypt.hashSync(user.password, salt, function(err, hash) {
-        if(err) return next(err);
-
-        user.password = hash;
-        next();
-    });
-});
-
-UserSchema.methods.comparePassword = function(userPassword, callback) {
-    bcrypt.compare(userPassword, this.password, function(err, isMatch) {
-        if (err) return callback(err);
-
-        callback(null, isMatch);
-    });
-};
-
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
