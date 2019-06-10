@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../../actions/userActions';
-import { MDBJumbotron, MDBBtn } from 'mdbreact';
+import UserNav from './partials/UserNavbar';
+import { MDBJumbotron, MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCardBody, MDBCardTitle } from 'mdbreact';
 
 function mapStateToProps(state) {
     const { user, loggedIn } = state.authentication;
@@ -31,7 +32,7 @@ class ConnectedUserLanding extends Component {
 
     if (user && loggedIn){
         buttonGroup = (
-        <MDBBtn color="warning" onClick={this.handleLogOut}>
+        <MDBBtn className="black-text" outline color="warning" onClick={this.handleLogOut}>
         Sign Out
         </MDBBtn>
         )
@@ -50,9 +51,25 @@ class ConnectedUserLanding extends Component {
 
     return (
       <div className="content">
-          <MDBJumbotron text-center>
-            {buttonGroup}
-        </MDBJumbotron>
+          <UserNav />
+          <MDBContainer className="mt-5 text-center">
+              <MDBRow>
+                  <MDBCol>
+                  <MDBJumbotron className="text-center">
+                    <MDBCardBody>
+                    <MDBCardTitle className="h2">
+                    Welcome to Pawfit
+                    </MDBCardTitle>
+                    <p className="my-4">
+                        Swipe your way to your furrever friend.
+                    </p>
+                    {buttonGroup}
+                    </MDBCardBody>
+                    </MDBJumbotron>
+                  </MDBCol>
+              </MDBRow>
+          </MDBContainer>
+         
       </div>
     )
   }
