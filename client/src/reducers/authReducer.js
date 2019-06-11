@@ -20,6 +20,8 @@ export function authentication(state = initialState, action){
             return {};
         case userConstants.USER_SIGNOUT:
             return {};
+        case userConstants.GET_PROFILE_FAILURE:
+            return {};
         default:
             return state;
     }

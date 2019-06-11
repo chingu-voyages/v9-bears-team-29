@@ -4,12 +4,15 @@ import { history } from "../helpers/history";
 import { alertActions } from "../actions/alertActions";
 import { Router, Switch, Route } from "react-router-dom";
 import Landing from "./Landing";
-import SignIn from './standardUsers/partials/SignIn';
-import Register from './standardUsers/partials/Register';
-import UserLanding from './standardUsers/UserLanding';
-import Browse from './standardUsers/Browse';
-import Profile from './standardUsers/Profile';
+import UserApp from './UserApp';
+import UserProfile from './standardUsers/Profile';
 import Favorites from './standardUsers/Favorites';
+import Browse from './standardUsers/Browse';
+import Register from './standardUsers/partials/Register';
+import SignIn from './standardUsers/partials/SignIn'
+import UserNav from './standardUsers/partials/UserNavbar';
+import Form from './standardUsers/profileForm/Form';
+import EditProfile from './standardUsers/profileForm/EditProfile';
 import { MDBAlert } from 'mdbreact';
 
 class ConnectedApp extends Component {
@@ -33,12 +36,20 @@ class ConnectedApp extends Component {
             <main className="content">
               <Switch>
                 <Route exact path="/" component={Landing} />
-                <Route exact path="/user/sign_in" component={SignIn} />
-                <Route exact path="/user/register" component={Register} />
-                <Route exact path="/user/index" component={UserLanding} /> 
-                <Route exact path="/user/browse" component={Browse} />
-                <Route exact path="/user/:id/profile" component={Profile} />
-                <Route exact path="/user/:id/favorites" component={Favorites} />
+                <Route path="/user"
+                  render={( { match }) => (
+                    <>
+                    <UserNav />
+                    <Route exact path={`${match.url}/index`} component={UserApp} />
+                    <Route exact path={`${match.url}/sign_in`} component={SignIn} />
+                    <Route exact path={`${match.url}/register`} component={Register} />
+                    <Route exact path={`${match.url}/browse`} component={Browse} />
+                    <Route exact path={`${match.url}/profile`} component={UserProfile} />
+                    <Route exact path={`${match.url}/add_profile`} component={Form} />
+                    <Route exact path={`${match.url}/edit_profile`} component={EditProfile} />
+                    <Route exact path={`${match.url}/favorites`} component={Favorites} />
+                    </>
+                  )} />
               </Switch>
             </main>
           </div>

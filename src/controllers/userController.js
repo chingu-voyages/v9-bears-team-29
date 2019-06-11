@@ -40,4 +40,35 @@ module.exports = {
             }
         })
     },
+    addProfile(req, res, next){
+        const data = req.body.profile;
+        const userId = req.params.id;
+
+        thisUser = User.findById(userId);
+
+        thisUser.updateOne({profile: data }, function(err, user) {
+            if(err){
+                res.send({ response: err });
+            } else {
+                res.send({ profile: data })
+            }
+        })
+
+    },
+    fetchProfile(req, res, next){
+        const userId = req.params.id;
+
+        var query = User.findById(userId);
+
+        query.select('profile');
+
+        
+        query.exec(function(err, profile) {
+            if(err){
+                res.send({ response: err });
+            } else {
+                res.send({ profile })
+            }
+        })
+    }
 }
