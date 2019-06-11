@@ -48,10 +48,10 @@ class ConnectedNav extends Component {
                         <MDBNavLink to="/user/browse">Browse Dogs</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
-                        <MDBNavLink to={{pathname: `/user/${user.response._id}/profile`}}>Profile</MDBNavLink>
+                        <MDBNavLink to='/user/profile'>Profile</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
-                        <MDBNavLink to={{pathname: `/user/${user.response._id}/favorites`}}>Favorites</MDBNavLink>
+                        <MDBNavLink to='/user/favorites'>Favorites</MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>
             )

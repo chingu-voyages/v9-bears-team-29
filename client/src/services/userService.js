@@ -1,7 +1,11 @@
+import { authHeader } from '../helpers/authHeader';
+
 export const userService = {
     register,
     signOut,
-    login
+    login,
+    addProfile,
+    fetchProfile
 }
 
 async function register(user) {
@@ -12,6 +16,30 @@ async function register(user) {
     };
 
     const response = await fetch(`/user/register`, requestOptions);
+    const res = handleResponse(response);
+    return res;
+};
+
+async function addProfile(data, userId) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({ profile: data })
+    }
+
+    const response = await fetch(`/user/${userId}/save_profile`, requestOptions);
+    const res = handleResponse(response);
+    localStorage.setItem('profile', JSON.stringify(res));
+    return res;
+};
+
+async function fetchProfile(userId) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    }
+
+    const response = await fetch(`/user/${userId}/get_profile`, requestOptions);
     const res = handleResponse(response);
     return res;
 };

@@ -19,7 +19,6 @@ class ConnectedFavorites extends Component {
 
         return (
             <div className="content">
-                <UserNav />
                 <div className="favorites">
                 {message && type === "alert-danger" ? <MDBAlert color="danger">{message}</MDBAlert> : <p></p>}
                 {message && type === "alert-success" ? <MDBAlert color="success">{message}</MDBAlert> : <p></p>}

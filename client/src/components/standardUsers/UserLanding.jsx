@@ -51,7 +51,6 @@ class ConnectedUserLanding extends Component {
 
     return (
       <div className="content">
-          <UserNav />
           <MDBContainer className="mt-5 text-center">
               <MDBRow>
                   <MDBCol>

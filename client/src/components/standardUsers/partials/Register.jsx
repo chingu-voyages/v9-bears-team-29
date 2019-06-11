@@ -50,14 +50,13 @@ class ConnectedSignUp extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const { dispatch } = this.props;
-        const { user, submitted } = this.state;
-        this.setState({ submitted: true });
+        const { user } = this.state;
         let newUser = {
             name: user.name,
             email: user.email,
             password: user.password
         }
-        if (submitted && user.email && user.password && (user.password === user.passwordConfirmation)){
+        if (user.email && user.password && (user.password === user.passwordConfirmation)){
             dispatch(userActions.register(newUser))
         }
     }

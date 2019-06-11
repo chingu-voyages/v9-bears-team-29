@@ -12,12 +12,13 @@ import {
 
 
 function mapStateToProps(state) {
-    const { user } = state.authentication;
+    const { user, loggingIn } = state.authentication;
     const { message, type } = state.alert; 
     return {
         user,
         message,
-        type
+        type,
+        loggingIn
     }
 }
 
@@ -49,15 +50,14 @@ class ConnectedSignIn extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const { dispatch } = this.props;
-        const { user, submitted } = this.state;
-        this.setState({ submitted: true });
-        if (submitted && user.email && user.password){
+        const { user } = this.state;
+        if (user.email && user.password){
             dispatch(userActions.login(user))
         }
     }
 
     render() {
-        const { message, type } = this.props;
+        const { message, type, loggingIn } = this.props;
         const { user, submitted } = this.state;
         return (
             <div className="content">
@@ -93,6 +93,7 @@ class ConnectedSignIn extends Component {
                     <MDBBtn color="primary" type="submit">
                       Sign In
                     </MDBBtn>
+                    {loggingIn}
                     <Link to="/user/register" className="btn btn-link">Register</Link>
                   </div>
                 </form>
